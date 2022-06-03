@@ -4,6 +4,7 @@ import { ReactComponent as PencilLogo } from "../../asset/pencil-svgrepo-com.svg
 import { UserContext } from "../../context/user-context";
 import AuthService from "../../utils/AuthService";
 import LogoImg from "../../asset/BookLogo.png";
+import LoginPage from "../login-page";
 import {
   NavbarLinkContainer,
   NavbarContainer,
@@ -83,7 +84,7 @@ const Navigation = () => {
                   SIGN OUT
                 </NavbarLink>
               ) : (
-                <NavbarLink to="/auth/signin">SIGN IN</NavbarLink>
+                <NavbarLink to="/login-page">SIGN IN</NavbarLink>
               )}
               <NavbarLink to="/about">About Us</NavbarLink>
             </NavbarLinkContainer>
