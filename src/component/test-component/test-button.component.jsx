@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import AuthService from "../../utils/AuthService";
 import UserService from "../../utils/UserService";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useContext } from "react";
+import { UserContext } from "../../context/user-context";
 const TestButton = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const { setCurrentUser } = useContext(UserContext);
 
   useEffect(() => {
     setUsername("Manager1");
@@ -14,6 +17,7 @@ const TestButton = () => {
   const signIn = () => {
     AuthService.signIn(username, password).then((response) => {
       console.log(response);
+      setCurrentUser(AuthService.getCurrentUser());
     });
   };
   const signOut = () => {

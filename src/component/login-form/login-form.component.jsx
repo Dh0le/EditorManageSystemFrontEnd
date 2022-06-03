@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AuthService from "../../utils/AuthService";
 import { LogInFormContainer } from "./login-form.styles";
 import { Form, Button } from "react-bootstrap";
-import { render } from "@testing-library/react";
-
+import { UserContext } from "../../context/user-context";
 const LogInForm = () => {
   const defaultFormFields = {
     username: "",
@@ -12,11 +11,13 @@ const LogInForm = () => {
 
   const [formFields, setFormField] = useState(defaultFormFields);
   const { username, password } = formFields;
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
       AuthService.signIn(username, password);
+      setCurrentUser(AuthService.getCurrentUser());
     } catch (error) {
       alert(error.code);
     }
@@ -30,18 +31,33 @@ const LogInForm = () => {
   return (
     <LogInFormContainer className="sign-in-form-container">
       <h2> Sign in with user name </h2>
-      <form onSubmit={handleSubmit}>
-        <formInput>
-          lable = "username" type = "username" required onChange ={" "}
-          {handleChange}
-          name = "username" value = {username}
-        </formInput>
-        <formInput>
-          label = "password" type = "password" required conChange ={" "}
-          {handleChange}
-          name = "password" value = {password}
-        </formInput>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="username"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </LogInFormContainer>
   );
 };

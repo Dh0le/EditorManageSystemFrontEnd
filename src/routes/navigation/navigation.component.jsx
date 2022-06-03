@@ -1,10 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { ReactComponent as PencilLogo } from "../../asset/pencil-svgrepo-com.svg";
 import { UserContext } from "../../context/user-context";
 import AuthService from "../../utils/AuthService";
 import LogoImg from "../../asset/BookLogo.png";
-import LoginPage from "../login-page";
 import {
   NavbarLinkContainer,
   NavbarContainer,
@@ -29,11 +27,12 @@ const Navigation = () => {
       // we retrieved its info from context and check the role of the user
       // base on these flags we deterement which Link to render
       const role = currentUser.roles[0];
+      console.log(role);
       if (role === "ROLE_AUTHOR") {
         setIsAuthor(true);
       } else if (role === "ROLE_EDITOR") {
         setIsEditor(true);
-      } else if (role === "ROLE_MANAGER") {
+      } else if (role === "ROLE_ADMIN") {
         setIsManager(true);
       }
     } else {
@@ -84,7 +83,7 @@ const Navigation = () => {
                   SIGN OUT
                 </NavbarLink>
               ) : (
-                <NavbarLink to="/login-page">SIGN IN</NavbarLink>
+                <NavbarLink to="/signin">SIGN IN</NavbarLink>
               )}
               <NavbarLink to="/about">About Us</NavbarLink>
             </NavbarLinkContainer>

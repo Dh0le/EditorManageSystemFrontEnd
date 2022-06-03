@@ -14,7 +14,7 @@ export const NavbarContainer = styled.nav`
 export const LeftContainer = styled.div`
   flex: 70%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding-left: 0%;
 `;
 
@@ -41,7 +41,7 @@ export const NavbarLink = styled(Link)`
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
-  margin-top: 20px;
+  margin-top: 25px;
   @media (max-width: 700px) {
     display: none;
   }
