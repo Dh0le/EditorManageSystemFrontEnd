@@ -27,58 +27,60 @@ const SignUpForm = () => {
     setFormField({ ...formFields, [name]: value });
   };
   return (
-    <SignUpFormContainer className="sign-up-form-container">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Bob"
-            name="username"
-            value={username}
-            onChange={handleChange}
-          />
-        </Form.Group>
+    <div>
+      <SignUpFormContainer className="sign-up-form-container">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Bob"
+              name="username"
+              value={username}
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            required
-            type="email"
-            placeholder="name@example.com"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              placeholder="name@example.com"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Confirm password</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </SignUpFormContainer>
+          <Form.Group className="mb-3">
+            <Form.Label>Confirm password</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </SignUpFormContainer>
+    </div>
   );
 };
 
