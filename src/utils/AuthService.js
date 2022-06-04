@@ -3,11 +3,16 @@ const API_URL = "http://66.42.113.23:8080/api/v1/auth/";
 
 // function to sign up a new user
 const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
-  });
+  return axios
+    .post(API_URL + "signup", {
+      username,
+      email,
+      password,
+    })
+    .catch((error) => {
+      //TODO
+      console.log(error);
+    });
 };
 
 // function to sign in
@@ -22,6 +27,10 @@ const signIn = (username, password) => {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
+    })
+    .catch((error) => {
+      //TODO
+      console.log(error);
     });
 };
 // function to sign out
