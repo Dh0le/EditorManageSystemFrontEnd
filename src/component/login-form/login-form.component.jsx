@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import AuthService from "../../utils/AuthService";
-import { LogInFormContainer } from "./login-form.styles";
+import { LogInFormContainer, LogInButtonContainer } from "./login-form.styles";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../context/user-context";
+
 const LogInForm = () => {
   const defaultFormFields = {
     username: "",
@@ -31,32 +32,33 @@ const LogInForm = () => {
   return (
     <LogInFormContainer className="sign-in-form-container">
       <h2> Sign in with user name </h2>
+      {/* Error! */}
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
+        <Form.Group className="form-group">
+          <Form.Label>User name</Form.Label>
           <Form.Control
-            required
             type="text"
-            placeholder="username"
+            required
+            placeholder="user name: Bob123"
+            onChange={handleChange}
             name="username"
             value={username}
-            onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="form-group">
+          <Form.Label>password</Form.Label>
           <Form.Control
-            required
             type="text"
-            name="password"
-            placeholder="password"
-            value={password}
+            required
+            placeholder="password: 123456"
             onChange={handleChange}
+            name="password"
+            value={password}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <LogInButtonContainer className="button container">
+          <Button type="submit">Sign In</Button>
+        </LogInButtonContainer>
       </Form>
     </LogInFormContainer>
   );
