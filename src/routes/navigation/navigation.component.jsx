@@ -26,6 +26,10 @@ const Navigation = () => {
     setCurrentUser(null);
   };
   useEffect(() => {
+    setCurrentUser(AuthService.getCurrentUser());
+  }, []);
+
+  useEffect(() => {
     if (currentUser) {
       // if a current user is loged in
       // we retrieved its info from context and check the role of the user
