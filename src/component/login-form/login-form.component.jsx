@@ -12,13 +12,14 @@ const LogInForm = () => {
 
   const [formFields, setFormField] = useState(defaultFormFields);
   const { username, password } = formFields;
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
-      AuthService.signIn(username, password);
-      setCurrentUser(AuthService.getCurrentUser());
+      AuthService.signIn(username, password).then((userData) => {
+        setCurrentUser(userData);
+      });
     } catch (error) {
       alert(error.code);
     }

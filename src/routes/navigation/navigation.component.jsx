@@ -16,11 +16,15 @@ import {
   NavbarLink,
 } from "./navigation.styles";
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [isAuthor, setIsAuthor] = useState(false);
   const [isEditor, setIsEditor] = useState(false);
   const [isManager, setIsManager] = useState(false);
   const [extendNavbar, setExtendNavbar] = useState(false);
+  const signOutHandler = () => {
+    AuthService.signOut();
+    setCurrentUser(null);
+  };
   useEffect(() => {
     if (currentUser) {
       // if a current user is loged in
@@ -79,7 +83,7 @@ const Navigation = () => {
           <RightContainer>
             <NavbarLinkContainer>
               {currentUser ? (
-                <NavbarLink as={"span"} onClick={AuthService.signOut}>
+                <NavbarLink as={"span"} onClick={signOutHandler}>
                   SIGN OUT
                 </NavbarLink>
               ) : (

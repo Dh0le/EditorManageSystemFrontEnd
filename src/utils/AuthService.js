@@ -25,8 +25,9 @@ const signIn = (username, password) => {
     .then((response) => {
       if (response.data.jwt) {
         localStorage.setItem("user", JSON.stringify(response.data));
+        console.log(response.data);
+        return response.data;
       }
-      return response.data;
     })
     .catch((error) => {
       //TODO
