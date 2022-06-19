@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const UserList = ({ userData }) => {
-  const { username, email, role } = userData;
+  const { username, email, roles } = userData;
 
   const handleClick = (value) => {};
 
@@ -9,7 +9,7 @@ const UserList = ({ userData }) => {
     <tr onClick={handleClick(username)}>
       <td> {username} </td>
       <td> {email} </td>
-      <td> {role} </td>
+      <td>{roles[0].name}</td>
     </tr>
   );
 };
