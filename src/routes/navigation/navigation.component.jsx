@@ -28,7 +28,32 @@ const Navigation = () => {
   useEffect(() => {
     setCurrentUser(AuthService.getCurrentUser());
   }, []);
-
+  // dummy comment head
+  // import ProductDummyService.js
+  // pms.getEditingProducts()
+  // pms.getAllProducts()
+  // pms.getMyProducts()
+  const [products, setProducts] = useState({});
+  useEffect(() => {
+    setCurrentUser(AuthService.getCurrentUser());
+    if (currentUser) {
+      const role = currentUser.roles[0];
+      console.log(role);
+      if (role === "ROLE_AUTHOR") {
+        //pms.getMyProduct().then((reponse)=>{setProducts(reponse)})
+      } else if (role === "ROLE_EDITOR") {
+        //pms.getEditingProducts().then((reponse)=>{setProducts(reponse)})
+      } else if (role === "ROLE_ADMIN") {
+        //pms.getAllProducts().then((reponse)=>{setProducts(reponse)})
+      }
+    }
+  }, []);
+  /**
+   * return (<Fragement>
+   *  {products.map((product)=>(<ProdcutItem product=product/>))}
+   * </Fragement>)
+   */
+  // dummy comment end
   useEffect(() => {
     if (currentUser) {
       // if a current user is loged in
@@ -60,52 +85,61 @@ const Navigation = () => {
             <NavbarLinkContainer>
               <Logo src={LogoImg}></Logo>
               {currentUser && (
-                <NavbarLink to="/profile"> My Profile</NavbarLink>
-              )}
+                <NavbarLink to="/profile"> My Profile </NavbarLink>
+              )}{" "}
               {isAuthor && (
-                <NavbarLink to="/author/products">My Products</NavbarLink>
-              )}
+                <NavbarLink to="/author/products"> My Products </NavbarLink>
+              )}{" "}
               {isEditor && (
-                <NavbarLink to="/editor/products">Editing Products</NavbarLink>
-              )}
+                <NavbarLink to="/editor/products">
+                  {" "}
+                  Editing Products{" "}
+                </NavbarLink>
+              )}{" "}
               {isManager && (
-                <NavbarLink to="/manager/products">All Products</NavbarLink>
-              )}
+                <NavbarLink to="/manager/products"> All Products </NavbarLink>
+              )}{" "}
               {isManager && (
-                <NavbarLink to="/manager/user">All Users</NavbarLink>
-              )}
-
+                <NavbarLink to="/manager/user"> All Users </NavbarLink>
+              )}{" "}
               <OpenLinksButton
                 onClick={() => {
                   setExtendNavbar((curr) => !curr);
                 }}
               >
-                {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
-              </OpenLinksButton>
-            </NavbarLinkContainer>
-          </LeftContainer>
+                {extendNavbar ? <> & #10005;</> : <> &# 8801; </>}{" "}
+              </OpenLinksButton>{" "}
+            </NavbarLinkContainer>{" "}
+          </LeftContainer>{" "}
           <RightContainer>
             <NavbarLinkContainer>
+              {" "}
               {currentUser ? (
                 <NavbarLink as={"span"} onClick={signOutHandler}>
-                  SIGN OUT
+                  SIGN OUT{" "}
                 </NavbarLink>
               ) : (
-                <NavbarLink to="/signin">SIGN IN</NavbarLink>
-              )}
-              <NavbarLink to="/about">About Us</NavbarLink>
-            </NavbarLinkContainer>
-          </RightContainer>
-        </NavbarInnerContainer>
+                <NavbarLink to="/signin"> SIGN IN </NavbarLink>
+              )}{" "}
+              <NavbarLink to="/about"> About Us </NavbarLink>{" "}
+            </NavbarLinkContainer>{" "}
+          </RightContainer>{" "}
+        </NavbarInnerContainer>{" "}
         {extendNavbar && (
           <NavbarExtendedContainer>
-            <NavbarLinkExtended to="/"> Home</NavbarLinkExtended>
-            <NavbarLinkExtended to="/products"> Products</NavbarLinkExtended>
-            <NavbarLinkExtended to="/contact"> Contact Us</NavbarLinkExtended>
-            <NavbarLinkExtended to="/about"> About Us</NavbarLinkExtended>
+            <NavbarLinkExtended to="/"> Home </NavbarLinkExtended>{" "}
+            <NavbarLinkExtended to="/manager/products">
+              {" "}
+              Products{" "}
+            </NavbarLinkExtended>{" "}
+            <NavbarLinkExtended to="/contact">
+              {" "}
+              Contact Us{" "}
+            </NavbarLinkExtended>{" "}
+            <NavbarLinkExtended to="/about"> About Us </NavbarLinkExtended>{" "}
           </NavbarExtendedContainer>
-        )}
-      </NavbarContainer>
+        )}{" "}
+      </NavbarContainer>{" "}
       <Outlet />
     </Fragment>
   );
