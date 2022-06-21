@@ -7,14 +7,14 @@ const getAllProduct = () => {
 };
 
 // function for manager to update the product information
-const adminUpdateProduct = (
+const adminUpdateProduct = ({
   id,
   productName,
   editorId,
   productStatus,
   totalSub,
-  newPaymentMethod
-) => {
+  newPaymentMethod,
+}) => {
   return axios
     .put(API_URL + "admin/product", {
       id,
@@ -36,7 +36,7 @@ const getEditingProduct = (userId) => {
 };
 
 //function for editor to update the product information
-const editorUpdateProduct = (id, productName, nextDue, status) => {
+const editorUpdateProduct = ({ id, productName, nextDue, status }) => {
   return axios
     .put(API_URL + "editor/product", {
       id,
