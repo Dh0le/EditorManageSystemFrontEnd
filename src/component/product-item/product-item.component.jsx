@@ -1,4 +1,5 @@
 import { ProductItemContainer, ItemDetail } from "./product-item-styles";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductItem = ({ productItem }) => {
   const {
@@ -14,13 +15,11 @@ const ProductItem = ({ productItem }) => {
   } = productItem;
 
   return (
-    <ProductItemContainer>
-      <ItemDetail>
-        <span>{productName}</span>
-        <span>{nextDueDate}</span>
-        <span>{status}</span>
-      </ItemDetail>
-    </ProductItemContainer>
+    <tr>
+      <td>{productName}</td>
+      <td>{nextDueDate}</td>
+      <td>{status}</td>
+    </tr>
   );
 };
 

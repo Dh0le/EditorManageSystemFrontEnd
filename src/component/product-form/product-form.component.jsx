@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect, Fragment } from "react";
 import { UserContext } from "../../context/user-context";
 import ProductService from "../../utils/productService";
-import { ProductFormContainer, ProductHeader } from "./product-form.styles";
+import { ProductFormContainer } from "./product-form.styles";
 import ProductItem from "../product-item/product-item.component";
 import AuthService from "../../utils/AuthService";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductForm = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -62,11 +63,17 @@ const ProductForm = () => {
   return (
     <Fragment>
       <ProductFormContainer>
-        <ProductHeader>
-          <h1>{header}</h1>
-          {products != null &&
-            products.map((product) => <ProductItem productItem={product} />)}
-        </ProductHeader>
+        <table className="table table-hover">
+          <thead>
+            <th>productName</th>
+            <th>nextDueDate</th>
+            <th>status</th>
+          </thead>
+          <tbody>
+            {products != null &&
+              products.map((product) => <ProductItem productItem={product} />)}
+          </tbody>
+        </table>
       </ProductFormContainer>
     </Fragment>
   );

@@ -11,10 +11,6 @@ export const ProductContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const ProductHeader = styled.div`
-  display: flex;
-`;
-
 /*
 export const ProductDetail = styled.div`
   padding: 0 2rem;
