@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect, Fragment } from "react";
 import { UserContext } from "../../context/user-context";
-import ProductService from "../../utils/ProductService";
+import ProductService from "../../utils/productService";
 import { ProductFormContainer, ProductHeader } from "./product-form.styles";
 import ProductItem from "../product-item/product-item.component";
 import AuthService from "../../utils/AuthService";
