@@ -15,6 +15,20 @@ const register = (username, email, password) => {
     });
 };
 
+const registerEditor = (username, email, password, role) => {
+  return axios
+    .post(API_URL + "signup", {
+      username,
+      email,
+      password,
+      role,
+    })
+    .catch((error) => {
+      //TODO
+      console.log(error);
+    });
+};
+
 // function to sign in
 const signIn = (username, password) => {
   return axios
@@ -46,6 +60,7 @@ const getCurrentUser = () => {
 
 const AuthService = {
   register,
+  registerEditor,
   signIn,
   signOut,
   getCurrentUser,

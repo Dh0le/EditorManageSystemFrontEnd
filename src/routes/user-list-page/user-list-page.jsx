@@ -1,25 +1,24 @@
 import UserList from "../../component/user-list/user-list.componet";
+import UserInfo from "../../utils/UserInfo";
+import { Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect, useState } from "react";
 
 const UserListPage = () => {
   const defaultUserData = [
     {
-      username: "aaa",
-      email: "aaa",
-      role: "aaa",
-    },
-    {
-      username: "bbb",
-      email: "bbb",
-      role: "bbb",
-    },
-    {
-      username: "ccc",
-      email: "ccc",
-      role: "ccc",
+      username: "",
+      email: "",
+      roles: [{ ID: null, name: "" }],
     },
   ];
+  const [usersData, setUsersData] = useState(defaultUserData);
+  useEffect(() => {
+    UserInfo.getUserInfo().then((response) => {
+      setUsersData(response);
+    });
+  }, []);
   const handleClick = () => {};
   return (
     <div>
@@ -32,15 +31,17 @@ const UserListPage = () => {
           </tr>
         </thead>
         <tbody>
-          {defaultUserData.map((item, index) => {
+          {usersData.map((item, index) => {
             return <UserList key={index} userData={item}></UserList>;
           })}
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={handleClick}>
-        {" "}
-        Create Editor Account{" "}
-      </button>
+      <Link to="/manager/user/create-editor">
+        <button className="btn btn-primary" onClick={handleClick}>
+          {" "}
+          Create Editor Account{" "}
+        </button>
+      </Link>
     </div>
   );
 };
