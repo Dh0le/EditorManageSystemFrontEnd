@@ -18,12 +18,12 @@ const ProductForm = () => {
     if (currentUser) {
       // if a current user is loged in, get the role of user
       const role = currentUser.roles[0];
-      console.log(role);
+      //console.log(role);
       if (role === "ROLE_AUTHOR") {
         //get all writing product for author
         ProductService.getWrittingProduct(currentUser.userId).then(
           (response) => {
-            console.log(response);
+            //console.log(response);
             setProducts(response);
           }
         );
@@ -41,8 +41,8 @@ const ProductForm = () => {
       } else if (role === "ROLE_ADMIN") {
         //get all product for manager
         ProductService.getAllProduct(currentUser.userId).then((response) => {
-          console.log("Current user is admin");
-          console.log(response);
+          //console.log("Current user is admin");
+          //console.log(response);
           setProducts(response);
         });
 
@@ -57,7 +57,7 @@ const ProductForm = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    console.log(products);
+    //console.log(products);
   }, [products]);
 
   return (
@@ -65,13 +65,18 @@ const ProductForm = () => {
       <ProductFormContainer>
         <table className="table table-hover">
           <thead>
-            <th>productName</th>
-            <th>nextDueDate</th>
-            <th>status</th>
+            <tr>
+              <th>productName</th>
+              <th>nextDueDate</th>
+              <th>status</th>
+              <th>Detail</th>
+            </tr>
           </thead>
           <tbody>
             {products != null &&
-              products.map((product) => <ProductItem productItem={product} />)}
+              products.map((product) => (
+                <ProductItem productItem={product} key={product.productName} />
+              ))}
           </tbody>
         </table>
       </ProductFormContainer>

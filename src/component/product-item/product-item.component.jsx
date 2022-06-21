@@ -1,5 +1,6 @@
 import { ProductItemContainer, ItemDetail } from "./product-item-styles";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({ productItem }) => {
   const {
@@ -19,6 +20,11 @@ const ProductItem = ({ productItem }) => {
       <td>{productName}</td>
       <td>{nextDueDate}</td>
       <td>{status}</td>
+      <td>
+        <Link to={`/product/${id}`} state={productItem}>
+          Product Detail
+        </Link>
+      </td>
     </tr>
   );
 };

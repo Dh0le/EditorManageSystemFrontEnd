@@ -6,6 +6,7 @@ import LoginPage from "./routes/login-page/login-page";
 import UserListPage from "./routes/user-list-page/user-list-page";
 import ProductPage from "./routes/product-list/product-list-page";
 import CreateEditorPage from "./routes/create-editor-page/create-editor-page";
+import ProductDetailPage from "./routes/product-detail-page/product-detail-page.component";
 function App() {
   return (
     <Routes>
@@ -18,6 +19,7 @@ function App() {
           path="/manager/user/create-editor"
           element={<CreateEditorPage />}
         />
+        <Route path="/product/:productId" element={<ProductDetailPage />} />
       </Route>
     </Routes>
   );
