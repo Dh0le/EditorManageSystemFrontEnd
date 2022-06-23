@@ -12,7 +12,7 @@ const CreateEditorForm = () => {
 
   const [formFields, setFormField] = useState(defaultFormFields);
   const { username, email, password, confirmPassword } = formFields;
-  const role = ["ROLE_EDITOR"];
+  const role = ["editor"];
 
   const handleSubmit = () => {
     if (password !== confirmPassword) {
