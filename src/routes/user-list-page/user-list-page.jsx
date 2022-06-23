@@ -28,6 +28,7 @@ const UserListPage = () => {
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Detail</th>
           </tr>
         </thead>
         <tbody>

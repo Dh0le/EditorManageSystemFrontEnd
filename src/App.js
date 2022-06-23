@@ -7,6 +7,7 @@ import UserListPage from "./routes/user-list-page/user-list-page";
 import ProductPage from "./routes/product-list/product-list-page";
 import CreateEditorPage from "./routes/create-editor-page/create-editor-page";
 import ProductDetailPage from "./routes/product-detail-page/product-detail-page.component";
+import UserDetailPage from "./routes/user-detail-page/user-detail-page.component";
 function App() {
   return (
     <Routes>
@@ -20,6 +21,7 @@ function App() {
           element={<CreateEditorPage />}
         />
         <Route path="/product/:productId" element={<ProductDetailPage />} />
+        <Route path="/user/:username" element={<UserDetailPage />} />
       </Route>
     </Routes>
   );
