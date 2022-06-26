@@ -8,7 +8,6 @@ const getUserInfo = () => {
   return axios
     .get(API_URL + "users", { headers: authHeader() })
     .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((error) => {
