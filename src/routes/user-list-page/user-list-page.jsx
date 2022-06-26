@@ -19,7 +19,6 @@ const UserListPage = () => {
       setUsersData(response);
     });
   }, []);
-  const handleClick = () => {};
   return (
     <div>
       <table className="table table-hover">
@@ -38,10 +37,10 @@ const UserListPage = () => {
         </tbody>
       </table>
       <Link to="/manager/user/create-editor">
-        <button className="btn btn-primary" onClick={handleClick}>
-          {" "}
-          Create Editor Account{" "}
-        </button>
+        <button className="btn btn-primary"> Create Editor Account </button>
+      </Link>
+      <Link to="/test/versions">
+        <button className="btn btn-primary">Test Button</button>
       </Link>
     </div>
   );
