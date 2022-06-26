@@ -20,11 +20,12 @@ const createChapterVersion = (chapterId, content) => {
     });
 };
 
+// TODO: get request with request body
 // function to retrieve all chapter versions
 const getChapterVersion = (chapterId) => {
   return axios
     .get(API_URL + "versions", {
-      params: JSON.stringify(chapterId),
+      params: { chapterId: chapterId },
       headers: authHeader(),
     })
     .then((res) => {
