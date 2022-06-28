@@ -10,7 +10,6 @@ const register = (username, email, password) => {
       password,
     })
     .catch((error) => {
-      //TODO
       console.log(error);
     });
 };
@@ -24,7 +23,6 @@ const registerEditor = (username, email, password, role) => {
       role,
     })
     .catch((error) => {
-      //TODO
       console.log(error);
     });
 };
@@ -44,7 +42,6 @@ const signIn = (username, password) => {
       }
     })
     .catch((error) => {
-      //TODO
       console.log(error);
     });
 };
