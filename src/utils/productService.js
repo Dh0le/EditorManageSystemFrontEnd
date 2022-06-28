@@ -3,10 +3,13 @@ import authHeader from "./auth-header";
 const API_URL = "http://66.42.113.23:8080/api/v1/";
 
 // function to get all products for manager
+//todo: get all product for manager, editor and author
 const getAllProduct = () => {
   return axios
-    .get(API_URL + "products", { headers: authHeader() })
-    .then((response) => response.data);
+    .post(API_URL + "getProducts", { headers: authHeader() })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 // function for manager to update the product information
@@ -39,7 +42,13 @@ const adminUpdateProduct = ({
 //function to get all current editing products for editor
 //Todo
 const getEditingProduct = (userId) => {
-  return axios.get(API_URL + "editor/products", { headers: authHeader() });
+  return axios.post(
+    API_URL + "editor/getProducts",
+    {
+      userId,
+    },
+    { headers: authHeader() }
+  );
 };
 
 //function for editor to update the product information
@@ -62,7 +71,11 @@ const editorUpdateProduct = ({ id, productName, nextDue, status }) => {
 
 //function for author to get product
 const getWrittingProduct = (userId) => {
-  return axios.get(API_URL + "author/products", { headers: authHeader() });
+  return axios.get(
+    API_URL + "author/getProducts",
+    { userId },
+    { headers: authHeader() }
+  );
 };
 
 //function for author to update the product information
