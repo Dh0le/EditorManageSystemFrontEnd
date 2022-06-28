@@ -45,13 +45,20 @@ const adminUpdateProduct = ({
 //function to get all current editing products for editor
 //Todo
 const getEditingProduct = (userId) => {
-  return axios.post(
-    API_URL + "editor/getProducts",
-    {
-      userId,
-    },
-    { headers: authHeader() }
-  );
+  return axios
+    .post(
+      API_URL + "editor/getProducts",
+      {
+        userId,
+      },
+      { headers: authHeader() }
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 //function for editor to update the product information
@@ -74,11 +81,14 @@ const editorUpdateProduct = ({ id, productName, nextDue, status }) => {
 
 //function for author to get product
 const getWrittingProduct = (userId) => {
-  return axios.get(
-    API_URL + "author/getProducts",
-    { userId },
-    { headers: authHeader() }
-  );
+  return axios
+    .post(API_URL + "author/getProducts", { userId }, { headers: authHeader() })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 //function for author to update the product information

@@ -3,27 +3,37 @@ import authHeader from "./auth-header";
 const API_URL = "http://66.42.113.23:8080/api/v1/";
 
 //function to get all chapter for a given product
-const getAllChapterWithProductInfo = (productId, productName) => {
+const getAllChapterWithProductInfo = (Id, Name) => {
   return axios
-    .get(API_URL + "chapters", {
-      params: {
-        productId: productId,
-        productName: productName,
+    .post(
+      API_URL + "getChapters",
+      {
+        productId: Id,
+        productName: Name,
       },
+      { headers: authHeader() }
+    )
+    .then((response) => {
+      return response.data;
     })
-    .then((response) => response.data);
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
 };
 
 //function to get all chapter with given id
 const getAllChapterWithGivenId = (Id, chapterId) => {
   return axios
-    .get(API_URL + "chapter", {
+    .post(API_URL + "getChapter", {
       params: {
         id: Id,
         chapterId: chapterId,
       },
     })
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 //function for author to create a chapter
