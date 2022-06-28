@@ -3,10 +3,11 @@ import { ProductDetailContainer } from "./product-detail.style";
 import ChapterItem from "../chapter-item/chapter-item.component";
 import { UserContext } from "../../context/user-context";
 import AuthService from "../../utils/AuthService";
+import ChapterInfo from "../../utils/ChapterInfo";
 
 const ProductDetail = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  const [chapters, setProducts] = useState([]);
+  const [chapters, setChapters] = useState([]);
   const [header, setHeader] = useState("user is not logged in ");
 
   useEffect(() => {
@@ -14,31 +15,27 @@ const ProductDetail = () => {
   }, []);
 
   useEffect(() => {
-    //console.log(products);
-  }, [chapters]);
+    setCurrentUser(AuthService.getCurrentUser());
+  }, []);
+
+  useEffect(
+    ({ currentProduct }) => {
+      if (currentUser) {
+      } else {
+        // if the current user is null, which means the website is in a logged out status
+        // so we reset all these status to false
+        console.log("current user is not logged in ");
+      }
+    },
+    [currentUser]
+  );
 
   return (
     <Fragment>
       <ProductDetailContainer>
-        <div>{/*show product infor*/}</div>
-        <div>{/*button to edit the info */}</div>
+        <div>{/*TODO:show product infor*/}</div>
+        <div>{/*TODO:button to edit the info */}</div>
       </ProductDetailContainer>
-
-      <table className="chapter list component">
-        <thead>
-          <tr>
-            <th>chapterName</th>
-            <th>chapterSub</th>
-            <th>chapterStatus</th>
-          </tr>
-        </thead>
-        <tbody>
-          {chapters != null &&
-            chapters.map((chapter) => (
-              <ChapterItem chapterItem={chapter} key={chapter.chapterName} />
-            ))}
-        </tbody>
-      </table>
     </Fragment>
   );
 };
