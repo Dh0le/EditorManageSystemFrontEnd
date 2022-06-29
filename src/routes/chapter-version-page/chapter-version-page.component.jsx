@@ -1,31 +1,21 @@
 import ChapterVersionService from "../../utils/ChapterVersionService";
 import AuthService from "../../utils/AuthService";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/user-context";
 import { useState, useEffect, useContext } from "react";
 import ChapterVersionItem from "../../component/chapter-version-item/chapter-version-item.component";
+import {
+  ButtonContainer,
+  StatusContainer,
+} from "./chapter-version-page.styles";
 
 const ChapterVersionPage = () => {
-  const defaultChapterVersionData = [
-    {
-      content: "aaa",
-      status: "aaa",
-      comment: "aaa",
-      wordCount: 3,
-    },
-    {
-      content: "bbb",
-      status: "bbb",
-      comment: "bbb",
-      wordCount: 3,
-    },
-  ];
-  // chapter data passed by chapter detail page
-  //const { chapterId, chapterName } = chapterData;
-  const [chapterVersionData, setChapterVersionData] = useState(
-    defaultChapterVersionData
-  );
-  const [isEditor, setIsEditor] = useState(false);
+  const location = useLocation();
+  const chapterData = location.state;
+  const { id, chapterName } = chapterData;
+  const [chapterVersionData, setChapterVersionData] = useState([]);
+  const [userRole, setUserRole] = useState(0);
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -36,16 +26,19 @@ const ChapterVersionPage = () => {
       // if a current user is loged in, get the role of user
       const role = currentUser.roles[0];
       if (role === "ROLE_EDITOR") {
-        setIsEditor(true);
+        setUserRole(1);
+      } else if (role === "ROLE_AUTHOR") {
+        setUserRole(2);
       }
     }
   }, [currentUser]);
 
-  //   useEffect(() => {
-  //     ChapterVersionService.getChapterVersion(22).then((response) => {
-  //       setChapterVersionData(response);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    ChapterVersionService.getChapterVersion(id).then((response) => {
+      setChapterVersionData(response);
+      console.log(chapterVersionData);
+    });
+  }, []);
 
   return (
     <div>
@@ -53,7 +46,7 @@ const ChapterVersionPage = () => {
         <thead>
           <tr>
             <th>
-              <h2>aaa</h2>
+              <h2>{chapterName}</h2>
             </th>
           </tr>
           <tr>
@@ -61,14 +54,32 @@ const ChapterVersionPage = () => {
             <th>Comment</th>
             <th>Word Count</th>
             <th>Status</th>
+            {userRole !== 0 && <th> Details </th>}
           </tr>
         </thead>
         <tbody>
-          {chapterVersionData.map((item, index) => {
-            return <ChapterVersionItem key={index} chapterVersionData={item} />;
-          })}
+          {chapterVersionData.length != 0 &&
+            chapterVersionData.map((item, index) => {
+              return (
+                <ChapterVersionItem key={index} chapterVersionData={item} />
+              );
+            })}
+          {chapterVersionData.length === 0 && (
+            <tr>Chapter version not found!</tr>
+          )}
         </tbody>
       </table>
+      {chapterVersionData.length === 0 && userRole === 2 && (
+        <ButtonContainer>
+          <StatusContainer>
+            <span>Chapter Status: </span>
+            <span>created</span>
+          </StatusContainer>
+          <Link>
+            <button className="btn-primary"> Create Chapter</button>
+          </Link>
+        </ButtonContainer>
+      )}
     </div>
   );
 };
