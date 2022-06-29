@@ -24,12 +24,15 @@ const createChapterVersion = (chapterId, content) => {
 // function to retrieve all chapter versions
 const getChapterVersion = (chapterId) => {
   return axios
-    .get(API_URL + "versions", {
-      params: { chapterId: chapterId },
-      headers: authHeader(),
-    })
+    .post(
+      API_URL + "getVersions",
+      {
+        chapterId,
+      },
+      { headers: authHeader() }
+    )
     .then((res) => {
-      console.log(res);
+      return res.data;
     })
     .catch((error) => {
       console.log(error);
