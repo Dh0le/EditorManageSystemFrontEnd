@@ -7,7 +7,6 @@ const ProductDetailPage = () => {
   const location = useLocation();
   const productItem = location.state;
   const [currentProduct, setCurrentProduct] = useState({});
-  const editProduct = () => {};
 
   useEffect(() => {
     setCurrentProduct(productItem);
@@ -17,13 +16,14 @@ const ProductDetailPage = () => {
 
   return (
     <Fragment>
-      <div className="product detail">
+      <div>
         <h1>Product : {currentProduct.productName}</h1>
         <p>total Sub:{currentProduct.totalSub}</p>
         <p>next Due Date:{currentProduct.nextDueDate}</p>
         <p>status:{currentProduct.status}</p>
-        <button onClick={editProduct}>Edit product</button>
       </div>
+
+      <ChapterList currentProduct={currentProduct}></ChapterList>
     </Fragment>
   );
 };

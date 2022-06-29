@@ -3,13 +3,14 @@ import authHeader from "./auth-header";
 const API_URL = "http://66.42.113.23:8080/api/v1/";
 
 //function to get all chapter for a given product
-const getAllChapterWithProductInfo = (Id, Name) => {
+const getAllChapterWithProductInfo = ({ id, productName }) => {
+  console.log(id, productName);
   return axios
     .post(
       API_URL + "getChapters",
       {
-        productId: Id,
-        productName: Name,
+        productId: id,
+        productName: productName,
       },
       { headers: authHeader() }
     )
