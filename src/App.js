@@ -10,6 +10,8 @@ import ProductDetailPage from "./routes/product-detail-page/product-detail-page.
 import UserDetailPage from "./routes/user-detail-page/user-detail-page.component";
 import ChapterVersionPage from "./routes/chapter-version-page/chapter-version-page.component";
 import CreateVersionPage from "./routes/create-chapter-version-page/create-chapter-version-page.component";
+import EditProductPage from "./routes/edit-product-info-page/edit-product-info-page";
+
 function App() {
   return (
     <Routes>
@@ -35,6 +37,7 @@ function App() {
           path="/chapter/:chapterId/edit"
           element={<CreateVersionPage />}
         />
+        <Route path="/editProduct/:productId" element={<EditProductPage />} />
       </Route>
     </Routes>
   );

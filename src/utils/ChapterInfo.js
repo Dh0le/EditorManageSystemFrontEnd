@@ -4,7 +4,7 @@ const API_URL = "http://66.42.113.23:8080/api/v1/";
 
 //function to get all chapter for a given product
 const getAllChapterWithProductInfo = ({ id, productName }) => {
-  console.log(id, productName);
+  //console.log(id, productName);
   return axios
     .post(
       API_URL + "getChapters",
@@ -18,16 +18,16 @@ const getAllChapterWithProductInfo = ({ id, productName }) => {
       return response.data;
     })
     .catch(function (error) {
-      console.log(error.response.data);
+      console.log(error);
     });
 };
 
 //function to get all chapter with given id
-const getAllChapterWithGivenId = (Id, chapterId) => {
+const getAllChapterWithGivenId = (id, chapterId) => {
   return axios
     .post(API_URL + "getChapter", {
       params: {
-        id: Id,
+        id: id,
         chapterId: chapterId,
       },
     })

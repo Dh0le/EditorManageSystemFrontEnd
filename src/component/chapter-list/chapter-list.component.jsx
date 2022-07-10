@@ -10,20 +10,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // TODO: call chapterList function in product detail page
 const ChapterList = ({ currentProduct }) => {
   const [chapters, setChapters] = useState([]);
-  const [localProduct, setLocalProduct] = useState(currentProduct);
+  // const [localProduct, setLocalProduct] = useState(currentProduct);
   const [header, setHeader] = useState("user is not logged in ");
 
   useEffect(() => {
-    setLocalProduct(currentProduct);
-  }, [currentProduct]);
-
-  useEffect(() => {
-    ChapterInfo.getAllChapterWithProductInfo(localProduct).then((response) => {
-      setChapters(response);
-    });
+    // setLocalProduct(currentProduct);
+    ChapterInfo.getAllChapterWithProductInfo(currentProduct).then(
+      (response) => {
+        setChapters(response);
+      }
+    );
     //set the page header for the chapter
     setHeader("All chapters for products");
-  }, [localProduct]);
+  }, []);
+
+  // useEffect(() => {
+  //   setLocalProduct(currentProduct);
+  // }, [currentProduct]);
+
+  // useEffect(() => {
+  //   console.log("use effect");
+  //   if (localProduct) {
+
+  //   }
+  // }, [localProduct]);
 
   useEffect(() => {
     //console.log(products);

@@ -1,46 +1,47 @@
 import { useState, useContext, useEffect, Fragment } from "react";
-import { ProductDetailContainer } from "./product-detail.style";
-import ChapterItem from "../chapter-item/chapter-item.component";
 import { UserContext } from "../../context/user-context";
 import AuthService from "../../utils/AuthService";
-import ChapterInfo from "../../utils/ChapterInfo";
-import ProductService from "../../utils/productService";
-import React from "react";
+import { Link } from "react-router-dom";
+import * as React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import { EditText, EditTextarea } from "react-edit-text";
 //import "react-edit-text/dist/index.css";
 
-const ProductDetail = (currentProduct) => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const [chapters, setChapters] = useState([]);
-  const [header, setHeader] = useState("user is not logged in ");
+const ProductDetail = ({ currentProduct }) => {
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [localProduct, setLocalProduct] = useState(currentProduct);
 
-  const editProduct = () => {
-    const role = currentUser.roles[0];
-    if (role === "ROLE_AUTHOR") {
-      ProductService.authorUpdateProduct();
-    } else if (role == "ROLE_EDITOR") {
-      ProductService.editorUpdateProduct();
-    } else if (role == "ROLE_ADMIN") {
-      ProductService.adminUpdateProduct();
-    }
-  };
+  // useEffect(() => {
+  //   setLocalProduct(currentProduct);
+  //   console.log(currentProduct.id);
+  // }, [currentProduct]);
 
-  useEffect(() => {
-    setCurrentUser(AuthService.getCurrentUser());
-  }, []);
+  // useEffect(() => {
+  //   setCurrentUser(AuthService.getCurrentUser());
+  // }, []);
+
+  console.log(currentProduct);
 
   return (
     <Fragment>
-      <ProductDetailContainer>
-        <div>{/*TODO:show product infor*/}</div>
+      <div>{/*TODO:show product infor*/}</div>
+      <h1>Product : {currentProduct.productName}</h1>
+      <p>total Sub:{currentProduct.totalSub}</p>
+      <p>next Due Date:{currentProduct.nextDueDate}</p>
+      <p>status:{currentProduct.status}</p>
+      <p>paymentMethod:{currentProduct.paymentMethod}</p>
 
-        <h1>Product : {currentProduct.productName}</h1>
-        <p>total Sub:{currentProduct.totalSub}</p>
-        <p>next Due Date:{currentProduct.nextDueDate}</p>
-        <p>status:{currentProduct.status}</p>
-        <button onClick={editProduct}>Edit product</button>
-        <div>{/*TODO:button to edit the info */}</div>
-      </ProductDetailContainer>
+      {/* <a
+        class="btn btn-primary"
+        link={"/editProduct/" + currentProduct.id}
+        role="button"
+      >
+        Edit product information
+      </a> */}
+
+      <Link to={`/editProduct/${currentProduct.id}`} state={currentProduct}>
+        <button>EditProduct</button>
+      </Link>
     </Fragment>
   );
 };
