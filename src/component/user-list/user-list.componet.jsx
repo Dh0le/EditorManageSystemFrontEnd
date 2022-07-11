@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const UserList = ({ userData }) => {
   const { username, email, roles } = userData;
+  console.log(userData);
 
   const handleClick = (value) => {};
 

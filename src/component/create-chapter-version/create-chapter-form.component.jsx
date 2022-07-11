@@ -6,7 +6,7 @@ import ChapterVersionService from "../../utils/ChapterVersionService";
 const CreateChapterVersionForm = ({ chapterId }) => {
   const defaultFormFields = {
     content: "",
-    comment: "",
+    comment: "aaa",
   };
 
   const [formFields, setFormField] = useState(defaultFormFields);
@@ -29,7 +29,12 @@ const CreateChapterVersionForm = ({ chapterId }) => {
 
   return (
     <div>
-      {comment !== "" && <p>{comment}</p>}
+      {comment !== "" && (
+        <div>
+          <h2> Comments from editor: </h2>
+          <h4>{comment}</h4>
+        </div>
+      )}
       <h2> Please enter chapter content </h2>
       {/* Error! */}
       <Form onSubmit={handleSubmit}>

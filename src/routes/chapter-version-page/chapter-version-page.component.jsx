@@ -65,7 +65,9 @@ const ChapterVersionPage = () => {
               );
             })}
           {chapterVersionData.length === 0 && (
-            <tr>Chapter version not found!</tr>
+            <tr>
+              <td>Chapter version not found!</td>
+            </tr>
           )}
         </tbody>
       </table>

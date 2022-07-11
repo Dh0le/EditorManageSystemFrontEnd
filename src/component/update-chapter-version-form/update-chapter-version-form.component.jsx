@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../context/user-context";
 import ChapterVersionService from "../../utils/ChapterVersionService";
 
-const UpdateChapterVersionForm = ({ chapterVersionData }) => {
+const UpdateChapterVersionForm = () => {
   const defaultFormFields = {
     content: "",
     status: "",
@@ -12,6 +12,10 @@ const UpdateChapterVersionForm = ({ chapterVersionData }) => {
   const [formFields, setFormField] = useState(defaultFormFields);
   const { comment, status } = formFields;
   const { setCurrentUser } = useContext(UserContext);
+  const chapterVersionData = {
+    id: 1,
+    content: "aaaaa",
+  };
   const { id, content } = chapterVersionData;
 
   const handleSubmit = (event) => {
@@ -35,7 +39,7 @@ const UpdateChapterVersionForm = ({ chapterVersionData }) => {
       {/* Error! */}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="form-group">
-          <Form.Label>Content: </Form.Label>
+          <Form.Label>Comments: </Form.Label>
           <Form.Control
             type="text"
             required
@@ -46,7 +50,7 @@ const UpdateChapterVersionForm = ({ chapterVersionData }) => {
           />
         </Form.Group>
         <Form.Group className="form-group">
-          <Form.Label>Content: </Form.Label>
+          <Form.Label>Status: </Form.Label>
           <Form.Control
             type="text"
             required

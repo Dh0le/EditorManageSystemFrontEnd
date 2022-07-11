@@ -21,26 +21,22 @@ const ProductForm = () => {
       //console.log(role);
       if (role === "ROLE_AUTHOR") {
         //get all writing product for author
-        ProductService.getWrittingProduct(currentUser.userId).then(
-          (response) => {
-            //console.log(response);
-            setProducts(response);
-          }
-        );
+        ProductService.getWrittingProduct(currentUser.id).then((response) => {
+          //console.log(response);
+          setProducts(response);
+        });
         //set the page header for the author
         setHeader("All writing products");
       } else if (role === "ROLE_EDITOR") {
         //get all editing product for editor
-        ProductService.getEditingProduct(currentUser.userId).then(
-          (response) => {
-            setProducts(response);
-          }
-        );
+        ProductService.getEditingProduct(currentUser.id).then((response) => {
+          setProducts(response);
+        });
         //set header for editor
         setHeader("All editing products");
       } else if (role === "ROLE_ADMIN") {
         //get all product for manager
-        ProductService.getAllProduct(currentUser.userId).then((response) => {
+        ProductService.getAllProduct(currentUser.id).then((response) => {
           //console.log("Current user is admin");
           //console.log(response);
           setProducts(response);
